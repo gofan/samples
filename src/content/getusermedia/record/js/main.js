@@ -19,6 +19,12 @@ let recordedBlobs;
 const errorMsgElement = document.querySelector('span#errorMsg');
 const recordedVideo = document.querySelector('video#recorded');
 const recordButton = document.querySelector('button#record');
+const logDiv = document.querySelector('div#log');
+
+function log(...str) {
+  logDiv.innerHtml = logDiv.innerHtml + '<br/>' + str.join(' ');
+}
+
 recordButton.addEventListener('click', () => {
   if (recordButton.textContent === 'Start Recording') {
     startRecording();
@@ -119,7 +125,7 @@ async function init(constraints) {
     const stream = await navigator.mediaDevices.getUserMedia(constraints);
     handleSuccess(stream);
   } catch (e) {
-    console.error('navigator.getUserMedia error:', e);
+    log('navigator.getUserMedia error:', e);
     errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
   }
 }
@@ -134,6 +140,6 @@ document.querySelector('button#start').addEventListener('click', async () => {
       width: 1280, height: 720
     }
   };
-  console.log('Using media constraints:', constraints);
+  log('Using media constraints:', constraints);
   await init(constraints);
 });
