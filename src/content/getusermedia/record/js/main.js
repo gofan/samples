@@ -33,6 +33,7 @@ recordButton.addEventListener('click', () => {
 const playButton = document.querySelector('button#play');
 playButton.addEventListener('click', () => {
   const superBuffer = new Blob(recordedBlobs, {type: 'video/webm'});
+  alert(recordedBlobs.length);
   recordedVideo.src = null;
   recordedVideo.srcObject = null;
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
