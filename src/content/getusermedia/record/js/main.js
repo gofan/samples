@@ -43,6 +43,7 @@ playButton.addEventListener('click', () => {
   recordedVideo.src = null;
   recordedVideo.srcObject = null;
   recordedVideo.src = window.URL.createObjectURL(superBuffer);
+  alert(recordedVideo.src);
   recordedVideo.controls = true;
   recordedVideo.play();
 });
